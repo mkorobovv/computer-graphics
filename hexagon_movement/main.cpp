@@ -39,7 +39,7 @@ int main()
     float radius = 50.0f; // Радиус шестиугольника
     for (size_t i = 0; i < HEXAGON_COUNT_POINTS; i++)
     {
-        float angle = 2 * 3.14159265f * i / HEXAGON_COUNT_POINTS; // Углы для шестиугольника
+        float angle = 2 * M_PI * i / HEXAGON_COUNT_POINTS; // Углы для шестиугольника
         float x = radius * cos(angle);
         float y = radius * sin(angle);
         hexagon.setPoint(i, sf::Vector2f(x, y));
