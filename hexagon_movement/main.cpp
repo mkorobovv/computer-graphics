@@ -68,6 +68,9 @@ int main()
         float scale = 1.f + .5f * sin(time * M_PI); // Используем синус для плавного изменения масштаба
         hexagon.setScale(scale, scale);
 
+        float angle = 2 * M_PI * time / HEXAGON_COUNT_POINTS;
+        hexagon.rotate(angle);
+
         window.draw(hexagon);
 
         // Обновление интерполяции
