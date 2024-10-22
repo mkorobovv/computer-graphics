@@ -1,7 +1,6 @@
 #define GL_SILENCE_DEPRECATION
 
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
 #include <GLUT/glut.h>
 #include <cmath>
 #include <iostream>
@@ -9,24 +8,9 @@
 #define CAMERA_SPEED 0.01f
 #define ZOOM_SPEED 0.05f
 
-// Управление камерой
+// Управление камеройad
 float cameraX = 0, cameraY = 0, cameraZ = 5;
 float fieldOfView = 45.0f;
-
-// Функция для нормализации вектора
-void normalize(float& x, float& y, float& z) {
-    float length = sqrt(x*x + y*y + z*z);
-    x /= length;
-    y /= length;
-    z /= length;
-}
-
-// Кросс-произведение двух векторов
-void crossProduct(float ax, float ay, float az, float bx, float by, float bz, float& rx, float& ry, float& rz) {
-    rx = ay * bz - az * by;
-    ry = az * bx - ax * bz;
-    rz = ax * by - ay * bx;
-}
 
 void handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) cameraZ -= CAMERA_SPEED; // Вперед
@@ -34,7 +18,6 @@ void handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) cameraX -= CAMERA_SPEED; // Влево
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) cameraX += CAMERA_SPEED; // Вправо
 }
-
 
 void handleZoom() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -59,7 +42,7 @@ void calculatePerspective(float fovY, float aspect, float zNear, float zFar) {
 void setPerspective() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    calculatePerspective(fieldOfView, 800.0 / 600.0, 0.1, 100);
+    calculatePerspective(fieldOfView, 1500.0f / 1200.0f, 0.1f, 100.0f);
 }
 
 void drawCube() {
